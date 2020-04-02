@@ -32,11 +32,19 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource CreateAudio(AudioClip clip)
     {
-        currentIdx = (currentIdx + 1) % maxPool;
-        
-        audioPool[currentIdx].clip = clip;
-        audioPool[currentIdx].Play();
+        if (clip != null)
+        {
+            currentIdx = (currentIdx + 1) % maxPool;
 
-        return audioPool[currentIdx];
+            audioPool[currentIdx].clip = clip;
+            audioPool[currentIdx].Play();
+
+            return audioPool[currentIdx];
+        }
+        else
+        {
+            Debug.LogError("No audio clip found for: " + gameObject.name);
+            return null;
+        }
     }
 }
