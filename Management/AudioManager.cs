@@ -51,7 +51,7 @@ public class AudioManager : MonoBehaviour
     {
         if (clip == null)
         {
-            Debug.LogError("No audio clip found for: " + gameObject.name);
+            Debug.LogError("No audio clip found for: " + designatedGameObject.name);
             return null;
         }
 
