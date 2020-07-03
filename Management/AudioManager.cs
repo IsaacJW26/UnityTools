@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
     // keep pool of audio objects
     // allows a 
     AudioSource[] audioPool;
-    const int maxPool = 15;
+    const int maxPool = 25;
 
     int currentIdx;
 
