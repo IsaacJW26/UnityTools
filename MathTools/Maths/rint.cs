@@ -4,13 +4,16 @@ namespace UnityTools
 {
     namespace Maths
     {
-        public struct rint
+        /// <summary>
+        /// ranged integer, that has a minimum and maximum
+        /// </summary>
+        public struct Rint
         {
             public readonly int Min;
             public readonly int Max;
             public int intValue;
 
-            public rint(int min, int max)
+            public Rint(int min, int max)
             {
                 if (min > max)
                     Debug.LogError("Min " + min + " value larger than Max " + max);
@@ -20,7 +23,7 @@ namespace UnityTools
                 intValue = min;
             }
 
-            public rint(int min, int max, int value)
+            public Rint(int min, int max, int value)
             {
                 if (min > max)
                     Debug.LogError("Min " + min + " value larger than Max " + max);
@@ -56,38 +59,49 @@ namespace UnityTools
             }
 
             //operators----------------
-            public static rint operator +(rint a, rint b)
+            public static Rint operator +(Rint a, Rint b)
             {
-                return new rint(a.Min, a.Max, a.intValue + b.intValue);
+                return new Rint(a.Min, a.Max, a.intValue + b.intValue);
             }
 
-            public static rint operator +(rint a, int b)
+            public static Rint operator +(Rint a, int b)
             {
-                return new rint(a.Min, a.Max, a.intValue + b);
+                return new Rint(a.Min, a.Max, a.intValue + b);
             }
 
-            public static rint operator -(rint a, int b)
+            public static Rint operator -(Rint a, int b)
             {
-                return new rint(a.Min, a.Max, a.intValue - b);
+                return new Rint(a.Min, a.Max, a.intValue - b);
             }
 
-            //equality
-            public static bool operator ==(rint a, rint b)
+            //equality--
+            public override bool Equals(object obj)
+            {
+                if (!(obj is Rint))
+                {
+                    return false;
+                }
+
+                var rint = (Rint)obj;
+                return intValue == rint.intValue;
+            }
+
+            public static bool operator ==(Rint a, Rint b)
             {
                 return (a.intValue == b.intValue);
             }
 
-            public static bool operator !=(rint a, rint b)
+            public static bool operator !=(Rint a, Rint b)
             {
                 return !(a == b);
             }
 
-            public static bool operator ==(rint a, int b)
+            public static bool operator ==(Rint a, int b)
             {
                 return (a.intValue == b);
             }
 
-            public static bool operator !=(rint a, int b)
+            public static bool operator !=(Rint a, int b)
             {
                 return !(a == b);
             }
